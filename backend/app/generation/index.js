@@ -1,3 +1,12 @@
+// A generation class 
+// Only allows users to create new dragons during a generation period
+// 
+// Each generation has its own newDragon() function that throws an error if called after 
+// the generation has expired. The generations expiration date is stored as a Date object
+// 
+// The referesh rate for each generation is variable, with each refresh rate being +-50%. 
+// All of the constants for SECONDS, MINUTES, HOURS, and DAYS are in the config.js file
+
 const {REFRESH_RATE, SECONDS} = require("../config.js");
 const Dragon = require("../dragon.js");
 

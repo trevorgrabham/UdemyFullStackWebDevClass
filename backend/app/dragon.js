@@ -1,3 +1,8 @@
+// Dragon class 
+//
+// Each dragon will have a nickname, birthdate, and an array of traits.
+// The traits are imported from traits.json
+
 const TRAITS = require("../data/traits.json");
 
 const DEFAULT_PROPERTIES = {

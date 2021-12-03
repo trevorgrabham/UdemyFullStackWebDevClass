@@ -1,3 +1,11 @@
+// A GenerationEngine class that spawns a new generation when the current one expires
+//
+// Asynchronously calls a function to wait until the current generation is expired 
+// and then creates a new generation. 
+//
+// start() function will begin the first generation, and the stop() function will 
+// terminate further generations after the current one expires
+
 const Generation = require("./index.js");
 
 class GenerationEngine {

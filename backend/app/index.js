@@ -1,3 +1,7 @@
+// Setup and routing for the express app
+// 
+// All of the routers are imported from the api folder and 
+// the generationEngine is stored in the locals field of the app
 const express = require("express");
 const GenerationEngine = require("./generation/generationEngine.js");
 const dragonRouter = require('./api/dragon.js');

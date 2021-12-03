@@ -1,3 +1,7 @@
+// Exports constants for the millisecond values of each of the constants
+//
+// REFRESH_RATE is the multiplier for each of the constants
+
 const SECONDS = 1000;
 const MINUTES = SECONDS * 60;
 const HOURS = MINUTES * 60;
