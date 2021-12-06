@@ -7,6 +7,7 @@
 // terminate further generations after the current one expires
 
 const Generation = require("./index.js");
+const GenerationTable = require('./table.js');
 
 class GenerationEngine {
     constructor() {
@@ -23,13 +24,22 @@ class GenerationEngine {
     }
 
     newGeneration() {
-        this.generation = new Generation();
-        console.log("new generation being created");
-        console.log("current generation", this.generation)
+        const generation = new Generation();
 
-        this.timer = setTimeout(() => {
-            this.newGeneration();
-        }, this.generation.expiration.getTime() - Date.now());
+        GenerationTable.storeGeneration(generation)
+            .then(({ generationId }) => {
+                this.generation = generation;
+                this.generation.generationId = generationId;
+
+                console.log("new generation being created");
+                console.log("current generation", this.generation);
+
+                this.timer = setTimeout(() => {
+                    this.newGeneration();
+                }, this.generation.expiration.getTime() - Date.now());
+            })
+            .catch((error) => console.error(error));
+
     }
 }
 

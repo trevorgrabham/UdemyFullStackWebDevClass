@@ -15,6 +15,7 @@ const refreshRate = REFRESH_RATE * SECONDS;
 class Generation {
     constructor() {
         this.expiration = calculateExpiration();
+        this.generationId = undefined;
     }
 
     newDragon() {

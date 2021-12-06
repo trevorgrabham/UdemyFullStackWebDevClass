@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./bin/server.js",
-    "configure": "./bin/configure_db.sh"
+    "configure": "./bin/configure_db.sh",
+    "configure-dev": "npm run configure && npm run dev"
   },
   "keywords": [],
   "author": "",
