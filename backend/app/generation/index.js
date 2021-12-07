@@ -8,7 +8,7 @@
 // All of the constants for SECONDS, MINUTES, HOURS, and DAYS are in the config.js file
 
 const {REFRESH_RATE, SECONDS} = require("../config.js");
-const Dragon = require("../dragon.js");
+const Dragon = require("../dragon/index.js");
 
 const refreshRate = REFRESH_RATE * SECONDS;
 
@@ -23,7 +23,11 @@ class Generation {
             throw new Error(`This generation expired on ${this.expiration}`);
         }
 
-        return new Dragon();
+        if(!this.generationId) {
+            throw new Error('This generation does not have an associated id');
+        }
+
+        return new Dragon({generationId: this.generationId});
     }
 };
 

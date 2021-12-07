@@ -1,3 +1,5 @@
+// A container class for query functions to store the generations in our db
+
 const pool = require('../../databasePool.js');
 
 class GenerationTable {

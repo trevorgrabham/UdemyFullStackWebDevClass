@@ -12,6 +12,16 @@ const app = express();
 app.use('/dragon', dragonRouter);
 app.use('/generation', generationRouter);
 
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+
+    res.status(statusCode)
+        .json({
+            type: 'error',
+            message: err.message
+        });
+});
+
 const generationEngine = new GenerationEngine();
 app.locals.generationEngine = generationEngine;
 generationEngine.start();
