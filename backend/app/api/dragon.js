@@ -5,6 +5,7 @@
 const {Router} = require('express');
 const DragonTable = require('../dragon/table.js');
 const DragonTraitTable = require('../dragonTrait/table.js');
+const {getDragonWithTraits} = require('../dragon/helper.js');
 
 const router = Router();
 
