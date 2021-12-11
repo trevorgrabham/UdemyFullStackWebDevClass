@@ -15,15 +15,6 @@ router.get("/new", (req, res, next) => {
     .then(({ dragonId }) => {
         dragon.id = dragonId;
 
-        dragon.traits.forEach(({ traitType, traitValue }) => {
-            DragonTraitTable.storeDragonTrait(dragon.id, traitType, traitValue)
-                .then(({}) => {
-                    console.log(`stored traitType: ${traitType},
-                    traitValue: ${traitValue}, dragonId: ${dragon.id}`);
-                })
-                .catch((error) => console.error(error));
-        });
-
         console.log('new dragon being created');
         console.log('new dragon', dragon);
 
