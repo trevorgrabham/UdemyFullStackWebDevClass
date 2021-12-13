@@ -1,0 +1,22 @@
+{
+  "name": "udemyfullstackwebdev",
+  "version": "1.0.0",
+  "description": "Not my own code, just following along with the course material. Some changes may be made to the original material, but is still heavily inspired by the original course material.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nf start",
+    "backend": "nodemon backend/bin/server.js",
+    "frontend": "parcel frontend/src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trevorgrabham/UdemyFullStackWebDevClass.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trevorgrabham/UdemyFullStackWebDevClass/issues"
+  },
+  "homepage": "https://github.com/trevorgrabham/UdemyFullStackWebDevClass#readme"
+}

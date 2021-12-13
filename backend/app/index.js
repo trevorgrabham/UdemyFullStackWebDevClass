@@ -3,12 +3,14 @@
 // All of the routers are imported from the api folder and 
 // the generationEngine is stored in the locals field of the app
 const express = require("express");
+const cors = require('cors');
 const GenerationEngine = require("./generation/generationEngine.js");
 const dragonRouter = require('./api/dragon.js');
 const generationRouter = require('./api/generation.js');
 
 const app = express();
 
+app.use(cors({ origin: 'http://localhost:1234'}));
 app.use('/dragon', dragonRouter);
 app.use('/generation', generationRouter);
 
