@@ -4,13 +4,18 @@
 // the generationEngine is stored in the locals field of the app
 const express = require("express");
 const cors = require('cors');
+const bodyPaser = require('body-parser');
 const GenerationEngine = require("./generation/generationEngine.js");
 const dragonRouter = require('./api/dragon.js');
 const generationRouter = require('./api/generation.js');
+const accountRouter = require('./api/account.js');
 
 const app = express();
 
 app.use(cors({ origin: 'http://localhost:1234'}));
+app.use(bodyPaser.json());
+
+app.use('/account', accountRouter);
 app.use('/dragon', dragonRouter);
 app.use('/generation', generationRouter);
 
