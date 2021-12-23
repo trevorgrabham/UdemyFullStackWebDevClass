@@ -1,9 +1,10 @@
 import { DRAGON } from "./types.js";
+import { BACKEND } from '../config.js';
 
 export const fetchDragon = () => (dispatch) => {
     dispatch({ type: DRAGON.FETCH });
 
-    return fetch('http://localhost:8080/dragon/new')
+    return fetch(`${BACKEND.ADDRESS}/dragon/new`)
         .then((response) => response.json())
         .then((json) => {
             if(json.type === 'error') {

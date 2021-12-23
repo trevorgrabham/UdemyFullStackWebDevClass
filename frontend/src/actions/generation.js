@@ -1,9 +1,10 @@
 import { GENERATION } from "./types.js";
+import { BACKEND } from "../config.js";
 
 export const fetchGeneration = () => (dispatch) => {
     dispatch({ type: GENERATION.FETCH });
 
-    return fetch('http://localhost:8080/generation')
+    return fetch(`${BACKEND.ADDRESS}/generation`)
         .then((response) => response.json())
         .then((json) => {
             if(json.type === 'error') {
