@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/trevorgrabham/UdemyFullStackWebDevClass/issues"
   },
-  "homepage": "https://github.com/trevorgrabham/UdemyFullStackWebDevClass#readme"
+  "homepage": "https://github.com/trevorgrabham/UdemyFullStackWebDevClass#readme",
+  "dependencies": {
+    "redux": "^4.0.0"
+  }
 }
