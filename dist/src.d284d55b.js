@@ -41015,6 +41015,11 @@ var DragonAvatar = function (_Component) {
         value: function render() {
             var dragon = this.props.dragon;
 
+
+            if (!dragon.id) {
+                return _react2.default.createElement('div', null);
+            }
+
             return _react2.default.createElement(
                 'div',
                 null,
