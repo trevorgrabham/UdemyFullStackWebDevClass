@@ -21025,15 +21025,10 @@ var Generation = function (_Component) {
     return Generation;
 }(_react.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
-    var generation = state.generation;
-
+exports.default = (0, _reactRedux.connect)(function (_ref2) {
+    var generation = _ref2.generation;
     return { generation: generation };
-};
-
-var componentConnector = (0, _reactRedux.connect)(mapStateToProps, { fetchGeneration: _generation.fetchGeneration });
-
-exports.default = componentConnector(Generation);
+}, { fetchGeneration: _generation.fetchGeneration })(Generation);
 },{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../actions/generation.js":"actions/generation.js","../reducers/fetchStates.js":"reducers/fetchStates.js"}],"../node_modules/core-js/library/modules/_global.js":[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -41135,10 +41130,6 @@ var _DragonAvatar2 = _interopRequireDefault(_DragonAvatar);
 
 var _dragon = require('../actions/dragon.js');
 
-var _fetchStates = require('../reducers/fetchStates.js');
-
-var _fetchStates2 = _interopRequireDefault(_fetchStates);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41157,11 +41148,6 @@ var Dragon = function (_Component) {
     }
 
     _createClass(Dragon, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.props.fetchDragon();
-        }
-    }, {
         key: 'render',
         value: function render() {
             console.log('this.props', this.props);
@@ -41181,15 +41167,11 @@ var Dragon = function (_Component) {
     return Dragon;
 }(_react.Component);
 
-var mapPropsToState = function mapPropsToState(state) {
-    var dragon = state.dragon;
+exports.default = (0, _reactRedux.connect)(function (_ref) {
+    var dragon = _ref.dragon;
     return { dragon: dragon };
-};
-
-var componentConnector = (0, _reactRedux.connect)(mapPropsToState, { fetchDragon: _dragon.fetchDragon });
-
-exports.default = componentConnector(Dragon);
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap":"../node_modules/react-bootstrap/es/index.js","./DragonAvatar.js":"components/DragonAvatar.js","../actions/dragon.js":"actions/dragon.js","../reducers/fetchStates.js":"reducers/fetchStates.js"}],"reducers/generation.js":[function(require,module,exports) {
+}, { fetchDragon: _dragon.fetchDragon })(Dragon);
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap":"../node_modules/react-bootstrap/es/index.js","./DragonAvatar.js":"components/DragonAvatar.js","../actions/dragon.js":"actions/dragon.js"}],"reducers/generation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

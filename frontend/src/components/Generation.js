@@ -44,15 +44,7 @@ class Generation extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const generation = state.generation;
-
-    return { generation };
-};
-
-const componentConnector = connect(
-    mapStateToProps,
-    { fetchGeneration }   
-);
-
-export default componentConnector(Generation);
+export default connect(
+    ({ generation }) => ({ generation }),
+    { fetchGeneration }
+)(Generation);

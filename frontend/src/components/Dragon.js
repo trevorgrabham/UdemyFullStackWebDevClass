@@ -3,13 +3,8 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import DragonAvatar from './DragonAvatar.js';
 import { fetchDragon } from '../actions/dragon.js';
-import fetchStates from '../reducers/fetchStates.js';
 
 class Dragon extends Component {
-    componentDidMount() {
-        this.props.fetchDragon();
-    }
-
     render() {
         console.log('this.props', this.props);
         return(
@@ -21,14 +16,7 @@ class Dragon extends Component {
     }
 }
 
-const mapPropsToState = (state) => {
-    const dragon = state.dragon;
-    return { dragon };
-}
-
-const componentConnector = connect(
-    mapPropsToState,
+export default connect(
+    ({ dragon }) => ({ dragon }),
     { fetchDragon }
-);
-
-export default componentConnector(Dragon);
+)(Dragon);
