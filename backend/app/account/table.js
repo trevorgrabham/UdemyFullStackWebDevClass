@@ -4,13 +4,12 @@ class AccountTable {
     static storeAccount({ usernameHash, passwordHash }) {
         return new Promise((resolve, reject) => {
             pool.query(`INSERT INTO account("usernameHash", "passwordHash")
-                        VALUES ($1, $2) RETURNING id`,
+                        VALUES ($1, $2)`,
             [usernameHash, passwordHash],
             (error, response) => {
                 if(error) return reject(error);
 
-                const accountId = response.rows[0].id;
-                resolve({ accountId });
+                resolve();
             });
         });
     }
@@ -25,6 +24,20 @@ class AccountTable {
                 if(error) return reject(error);
 
                 resolve({ account: response.rows[0] });
+            });
+        });
+    }
+
+    static updateSessionId({ sessionId, usernameHash }) {
+        return new Promise((resolve, reject) => {
+            pool.query(`UPDATE account 
+                        SET "sessionId" = $1
+                        WHERE "usernameHash" = $2`,
+            [sessionId, usernameHash],
+            (error, response) => {
+                if(error) return reject(error);
+
+                resolve();
             });
         });
     }

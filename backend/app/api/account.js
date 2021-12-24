@@ -2,6 +2,7 @@ const { Router } = require('express');
 const AccountTable = require('../account/table');
 const { hash } = require('../account/helper.js');
 const Session = require('../account/session.js');
+const { setSession } = require('./helper.js');
 
 const router = new Router();
 
@@ -20,17 +21,11 @@ router.post('/signup', (req, res, next) => {
                 throw error;
             }
         })
-        .then(({ accountId }) => {
-            const session = new Session({ username });
-            const sessionString = session.toString();
-
-            res.cookie('sessionString', sessionString, {
-                expire: Date.now() + 3600000,           // expires in 1 hour
-                httpOnly: true,
-                //secure: true                          // should be used with https
-            });
-
-            res.json({ message: `Successfully created account for user ${username} with accountId ${accountId}`})
+        .then(() => {
+            return setSession({ username, res })
+        })
+        .then(({ message }) => {
+            res.json({ message })
         })
         .catch((error) => next(error))
 
