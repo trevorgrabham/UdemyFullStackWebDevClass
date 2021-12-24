@@ -13,7 +13,7 @@ const accountRouter = require('./api/account.js');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:1234'}));
+app.use(cors({ origin: 'http://localhost:1234', credentials: true}));
 app.use(bodyPaser.json());
 app.use(cookieParser());
 

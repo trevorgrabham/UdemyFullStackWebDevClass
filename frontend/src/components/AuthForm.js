@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
+import { signup } from '../actions/account.js';
 
 class AuthForm extends Component {
     // we use a local state because only the AuthForm is concerned with the username and password and it doesn't need to be kept in the store
@@ -14,7 +16,8 @@ class AuthForm extends Component {
     }
 
     signup = () => {
-        console.log('this.state', this.state);
+        const { username, password } = this.state;
+        this.props.signup({ username, password });
     }
 
     login = () => {
@@ -51,4 +54,7 @@ class AuthForm extends Component {
     }
 }
 
-export default AuthForm;
+export default connect(
+    null,
+    { signup }
+)(AuthForm);
