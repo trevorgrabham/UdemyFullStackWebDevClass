@@ -16,7 +16,7 @@ class AccountTable {
 
     static getAccount({ usernameHash }) { 
         return new Promise((resolve, reject) => {
-            pool.query(`SELECT id, "passwordHash"
+            pool.query(`SELECT id, "passwordHash", "sessionId"
                         FROM account
                         WHERE "usernameHash" = $1`,
             [usernameHash],

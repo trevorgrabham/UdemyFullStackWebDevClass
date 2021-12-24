@@ -3,6 +3,7 @@ const AccountTable = require('../account/table');
 const { hash } = require('../account/helper.js');
 const Session = require('../account/session.js');
 const { setSession } = require('./helper.js');
+const { user } = require('../../secrets/databaseConfiguration');
 
 const router = new Router();
 
@@ -29,6 +30,23 @@ router.post('/signup', (req, res, next) => {
         })
         .catch((error) => next(error))
 
+});
+
+router.post('/login', (req, res, next) => {
+    const { username, password } = req.body;
+
+    AccountTable.getAccount({ usernameHash: hash(username)})
+        .then(({ account }) => {
+            if(account && account.passwordHash === hash(password)) {
+                return setSession({ username, res, sessionId: account.sessionId });
+            } else {
+                const error = new Error ('Incorrect username/password');
+                error.statusCode = 409;
+                throw error;
+            }
+        })
+        .then(({ message }) => res.json({ message }))
+        .catch((error) => next(error));
 });
 
 module.exports = router;
