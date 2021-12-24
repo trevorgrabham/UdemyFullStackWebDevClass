@@ -3,7 +3,6 @@ const AccountTable = require('../account/table');
 const { hash } = require('../account/helper.js');
 const Session = require('../account/session.js');
 const { setSession } = require('./helper.js');
-const { user } = require('../../secrets/databaseConfiguration');
 
 const router = new Router();
 
@@ -47,6 +46,20 @@ router.post('/login', (req, res, next) => {
         })
         .then(({ message }) => res.json({ message }))
         .catch((error) => next(error));
+});
+
+router.get('/logout', (req, res, next) => {
+    const { username } = Session.parse(req.cookies.sessionString);
+
+    AccountTable.updateSessionId({
+        sessionId: null,
+        usernameHash: hash(username)
+    })
+    .then(() => {
+        res.clearCookie('sessionString');
+        res.json({ message: `${username} successfully logged out`});
+    })
+    .catch((error) => next(error));
 });
 
 module.exports = router;
