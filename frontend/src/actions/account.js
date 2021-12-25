@@ -21,7 +21,7 @@ const fetchFromAccount = ({ endpoint, options, SUCCESS_TYPE }) => (dispatch) => 
         })
         .catch((error) => dispatch({ 
             type: ACCOUNT.FETCH_ERROR, 
-            message: json.message 
+            message: error.message 
         }));
 };
 
@@ -42,4 +42,15 @@ export const logout = () => fetchFromAccount({
         credentials: 'include'
     },
     SUCCESS_TYPE: ACCOUNT.FETCH_LOGOUT_SUCCESS
+});
+
+export const login = ({ username, password }) => fetchFromAccount({
+    endpoint: 'login',
+    options: {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_SUCCESS
 });
