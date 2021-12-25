@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { signup } from '../actions/account.js';
+import fetchStates from '../reducers/fetchStates.js';
 
 class AuthForm extends Component {
     // we use a local state because only the AuthForm is concerned with the username and password and it doesn't need to be kept in the store
@@ -22,6 +23,12 @@ class AuthForm extends Component {
 
     login = () => {
         console.log('this.state', this.state);
+    }
+
+    get error() {
+        if(this.props.account.status === fetchStates.error) {
+            return (<div>{this.props.account.message}</div>);
+        }
     }
 
     render() {
@@ -49,12 +56,14 @@ class AuthForm extends Component {
                     <span> or </span>
                     <Button onClick={this.signup}>Sign Up</Button>
                 </div>
+                <br />
+                {this.error}
             </div>
         );
     }
 }
 
 export default connect(
-    null,
+    ({ account }) => ({ account }),
     { signup }
 )(AuthForm);

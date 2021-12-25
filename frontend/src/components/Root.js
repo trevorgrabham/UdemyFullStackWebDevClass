@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Home from './Home.js';
 import AuthForm from './AuthForm.js';
 
 class Root extends Component {
     render() {
         return (
-            false ? <Home/> : <AuthForm/>
+            this.props.account.loggedIn ? <Home/> : <AuthForm/>
         )
     }
 }
 
-export default Root;
+export default connect(
+    ({ account }) => ({ account }),
+    null
+)(Root);
