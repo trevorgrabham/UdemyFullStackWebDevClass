@@ -1,15 +1,10 @@
 import { ACCOUNT } from './types.js';
 import { BACKEND } from '../config.js';
 
-export const signup = ({ username, password }) => (dispatch) => {
+const fetchFromAccount = ({ endpoint, options, SUCCESS_TYPE }) => (dispatch) => {
     dispatch({ type: ACCOUNT.FETCH });
 
-    return fetch(`${BACKEND.ADDRESS}/account/signup`, {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include'
-    })
+    return fetch(`${BACKEND.ADDRESS}/account/${endpoint}`, options)
         .then((response) => response.json())
         .then((json) => {
             if(json.type === 'error') {
@@ -19,7 +14,7 @@ export const signup = ({ username, password }) => (dispatch) => {
                 });
             } else {
                 dispatch({
-                    type: ACCOUNT.FETCH_SUCCESS,
+                    type: SUCCESS_TYPE,
                     ...json
                 });
             }
@@ -29,3 +24,22 @@ export const signup = ({ username, password }) => (dispatch) => {
             message: json.message 
         }));
 };
+
+export const signup = ({ username, password }) => fetchFromAccount({
+    endpoint: 'signup',
+    options: {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_SUCCESS
+});
+
+export const logout = () => fetchFromAccount({
+    endpoint: 'logout',
+    options: {
+        credentials: 'include'
+    },
+    SUCCESS_TYPE: ACCOUNT.FETCH_LOGOUT_SUCCESS
+});
