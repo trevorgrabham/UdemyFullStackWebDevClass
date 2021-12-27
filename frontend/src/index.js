@@ -8,6 +8,7 @@ import { createBrowserHistory } from 'history';
 import rootReducer from './reducers/index.js';
 import Root from './components/Root.js';
 import AccountDragons from './components/AccountDragons.js';
+import PublicDragons from './components/PublicDragons';
 import { fetchAuthenticated } from './actions/account.js';
 import './index.css';
 
@@ -38,6 +39,7 @@ store.dispatch(fetchAuthenticated())
                     <Switch>
                         <Route exact path='/' component={Root} />
                         <AuthRoute path='/account-dragons' component={AccountDragons} />
+                        <AuthRoute path='/public-dragons' component={PublicDragons} />
                     </Switch>
                 </Router>
             </Provider>,
