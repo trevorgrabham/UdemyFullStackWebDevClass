@@ -6,6 +6,7 @@ const {Router} = require('express');
 const DragonTable = require('../dragon/table.js');
 const AccountDragonTable = require('../accountDragon/table.js');
 const { authenticatedAccount } = require('./helper.js');
+const { getPublicDragons } = require('../dragon/helper.js');
 
 const router = Router();
 
@@ -31,6 +32,12 @@ router.put('/update', (req, res, next) => {
 
     DragonTable.updateDragon({ dragonId, nickname, isPublic, saleValue }) 
         .then(() => res.json({ message: `Successfully updated dragon ${nickname}`}))
+        .catch((error) => next(error));
+});
+
+router.get('/public-dragons', (req, res, next) => {
+    getPublicDragons()
+        .then(({ dragons }) => res.json({ dragons }))
         .catch((error) => next(error));
 })
 
