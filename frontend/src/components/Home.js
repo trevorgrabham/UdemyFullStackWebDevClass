@@ -14,8 +14,6 @@ class Home extends Component {
                 <h2>Dragon Stack</h2>
                 <Generation />
                 <Dragon />
-                <br />
-                <AccountDragons />
             </div>
         );
     }
