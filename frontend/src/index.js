@@ -4,15 +4,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { createBrowserHistory } from 'history';
 import rootReducer from './reducers/index.js';
 import Root from './components/Root.js';
 import AccountDragons from './components/AccountDragons.js';
 import PublicDragons from './components/PublicDragons';
 import { fetchAuthenticated } from './actions/account.js';
 import './index.css';
-
-const history  = createBrowserHistory();
+import history from './history.js';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
