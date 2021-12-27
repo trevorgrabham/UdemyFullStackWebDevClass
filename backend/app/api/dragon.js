@@ -48,11 +48,11 @@ router.post('/buy', (req, res, next) => {
 
     DragonTable.getDragon({ dragonId })
         .then((dragon) => {
-            if(dragon.saleValue !== saleValue) {
-                throw new Error('Sale value is not correct');
-            }
             if(!dragon.isPublic) {
                 throw new Error('Dragon must be public');
+            }
+            if(dragon.saleValue !== saleValue) {
+                throw new Error('Sale value is not correct');
             }
 
             return authenticatedAccount({ sessionString: req.cookies.sessionString });
