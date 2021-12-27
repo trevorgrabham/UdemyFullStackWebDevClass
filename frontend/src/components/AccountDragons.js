@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchAccountDragons } from '../actions/accountDragons.js';
 import AccountDragonRow from './AccountDragonRow.js';
 
@@ -22,6 +23,7 @@ class AccountDragons extends Component {
                         );
                     })
                 }
+                <Link to="/">Home</Link>
             </div>
         );
     }
